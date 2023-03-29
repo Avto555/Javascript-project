@@ -37,6 +37,9 @@
             placeholder="გაიმეორეთ პაროლი"
             required
           />
+          <p class="message p-1">
+            პაროლი უნდა შედგებოდეს მინიმ 8 ასოსგან და 1 სიმბოლოსგან მაინც
+          </p>
           <button type="submit">რეგისტრაცია</button>
           <p class="message">
             უკვე ხარ დარეგისტრირებული? <br />
@@ -62,6 +65,15 @@
           return;
         }
 
+        const passwordRegex =
+          /^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+        if (!passwordRegex.test(password)) {
+          alert(
+            "პაროლი უნდა შედგებოდეს მინიმ 8 ასოსგან და 1 სიმბოლოსგან მაინც"
+          );
+          return;
+        }
+
         const user = {
           email: email,
           password: password,
@@ -69,6 +81,9 @@
 
         localStorage.setItem("user", JSON.stringify(user));
         console.log(user);
+
+        alert("თქვენ წარმატებით გაიარეთ რეგისტრაცია");
+        window.location.href = "login.html";
       });
     </script>
   </body>
